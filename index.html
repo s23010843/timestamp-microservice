@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Timestamp Microservice</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
   <div class="container">
@@ -19,20 +19,37 @@
       <li><code>/api/invalid-date</code> (invalid date response)</li>
     </ul>
 
-    <h2>Enter a Date or Timestamp:</h2>
-    <input type="text" id="date-input" placeholder="Enter a date or timestamp" />
-    <button id="submit-btn">Submit</button>
-
-    <div id="output">
-      <p><strong>Unix Timestamp:</strong> <span id="unix"></span></p>
-      <p><strong>UTC Time:</strong> <span id="utc"></span></p>
-    </div>
-
     <footer>
       <p>🚀 Created for <a href="https://www.freecodecamp.org/" target="_blank">freeCodeCamp</a></p>
     </footer>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    const apiUrl = 'https://your-api-url.com/api';  // Update this with your backend API URL
+
+    document.getElementById('submit-btn').addEventListener('click', function() {
+      const inputDate = document.getElementById('date-input').value;
+      const unixElement = document.getElementById('unix');
+      const utcElement = document.getElementById('utc');
+
+      // Construct the API endpoint
+      const url = inputDate ? `${apiUrl}/${inputDate}` : `${apiUrl}/`; // Use empty string if no input
+
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          if (data.error) {
+            unixElement.textContent = 'Invalid Date';
+            utcElement.textContent = 'Invalid Date';
+          } else {
+            unixElement.textContent = data.unix;
+            utcElement.textContent = data.utc;
+          }
+        })
+        .catch(err => {
+          console.error('Error fetching data:', err);
+        });
+    });
+  </script>
 </body>
 </html>
