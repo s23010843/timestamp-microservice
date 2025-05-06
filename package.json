@@ -4,11 +4,15 @@
   "description": "A simple timestamp microservice",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "deploy": "gh-pages -d public",
+    "predeploy": "npm run build"
   },
   "dependencies": {
-    "express": "^4.17.1",
-    "cors": "^2.8.5"
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "gh-pages": "^3.2.3"
   },
   "repository": {
     "type": "git",
@@ -17,7 +21,7 @@
   "bugs": {
     "url": "https://github.com/s23010843/timestamp-microservice/issues"
   },
-  "homepage": "https://github.com/s23010843/timestamp-microservice#readme",
+  "homepage": "https://github.com/s23010843/timestamp-microservice",
   "author": "s23010843",
   "keywords": [
     "node",
