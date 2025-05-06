@@ -1,46 +1,39 @@
+// server.js
 const express = require('express');
-const cors = require('cors');
 const app = express();
+const port = process.env.PORT || 3000;
 
-// Enable CORS for FreeCodeCamp testing
-app.use(cors());
-
-// Root route (optional, just for info)
-app.get('/', (req, res) => {
-  res.send('Timestamp Microservice');
-});
-
-// Timestamp API endpoint
+// Route to handle the date conversion
 app.get('/api/:date?', (req, res) => {
-  const { date } = req.params;
-  let parsedDate;
+  let dateString = req.params.date;
+  let date;
 
-  if (!date) {
-    // No date provided, use current time
-    parsedDate = new Date();
+  // If no date is provided, return the current date
+  if (!dateString) {
+    date = new Date();
   } else {
-    // Check if it's a Unix timestamp (pure number)
-    if (/^\d+$/.test(date)) {
-      parsedDate = new Date(parseInt(date));
+    // Check if the provided date is a Unix timestamp
+    if (isNaN(dateString)) {
+      date = new Date(dateString);
     } else {
-      parsedDate = new Date(date);
+      // If it's a Unix timestamp, convert it to milliseconds
+      date = new Date(parseInt(dateString));
     }
   }
 
-  // Handle invalid date
-  if (parsedDate.toString() === "Invalid Date") {
+  // If the date is invalid, return an error message
+  if (date == 'Invalid Date') {
     return res.json({ error: "Invalid Date" });
   }
 
-  // Send response
+  // Return the result with Unix and UTC formats
   res.json({
-    unix: parsedDate.getTime(),
-    utc: parsedDate.toUTCString()
+    unix: date.getTime(),
+    utc: date.toUTCString()
   });
 });
 
-// Listen on a port
-const port = process.env.PORT || 3000;
+// Start the server
 app.listen(port, () => {
-  console.log(`Timestamp Microservice running on port ${port}`);
+  console.log(`Server is running on port ${port}`);
 });
