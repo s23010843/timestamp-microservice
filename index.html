@@ -1,55 +1,41 @@
+
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Timestamp Microservice</title>
-  <link rel="stylesheet" href="style.css"/>
-</head>
-<body>
-  <div class="container">
-    <h1>📅 Timestamp Microservice</h1>
-    <p>This API returns Unix and UTC time for a given date string or Unix timestamp.</p>
 
-    <h2>📌 Examples:</h2>
-    <ul>
-      <li><code>/api/2015-12-25</code></li>
-      <li><code>/api/1451001600000</code></li>
-      <li><code>/api/</code> (returns current time)</li>
-      <li><code>/api/invalid-date</code> (invalid date response)</li>
-    </ul>
+<html>
+  <head>
+    <title>Timestamp Microservice | freecodecamp.org</title>
+    <link
+      rel="shortcut icon"
+      href="https://cdn.freecodecamp.org/universal/favicons/favicon-32x32.png"
+      type="image/x-icon"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
 
-    <footer>
-      <p>🚀 Created for <a href="https://www.freecodecamp.org/" target="_blank">freeCodeCamp</a></p>
-    </footer>
-  </div>
+  <body>
+    <h1>Timestamp Microservice</h1>
+    <hr />
+    <div class="container">
+      <h2>Example Usage:</h2>
+      <ul>
+        <li><a href="api/2015-12-25">[project url]/api/2015-12-25</a></li>
+        <li><a href="api/1451001600000">[project url]/api/1451001600000</a></li>
+      </ul>
 
-  <script>
-    const apiUrl = 'https://s23010843.github.io/timestamp-microservice/api';  // Update this with your backend API URL
-
-    document.getElementById('submit-btn').addEventListener('click', function() {
-      const inputDate = document.getElementById('date-input').value;
-      const unixElement = document.getElementById('unix');
-      const utcElement = document.getElementById('utc');
-
-      // Construct the API endpoint
-      const url = inputDate ? `${apiUrl}/${inputDate}` : `${apiUrl}/`; // Use empty string if no input
-
-      fetch(url)
-        .then(response => response.json())
-        .then(data => {
-          if (data.error) {
-            unixElement.textContent = 'Invalid Date';
-            utcElement.textContent = 'Invalid Date';
-          } else {
-            unixElement.textContent = data.unix;
-            utcElement.textContent = data.utc;
-          }
-        })
-        .catch(err => {
-          console.error('Error fetching data:', err);
-        });
-    });
-  </script>
-</body>
+      <h2>Example Output:</h2>
+      <p>
+        <code
+          >{"unix":1451001600000, "utc":"Fri, 25 Dec 2015 00:00:00 GMT"}</code
+        >
+      </p>
+    </div>
+    <div class="footer">
+      <p>By <a href="https://www.freecodecamp.org/">freeCodeCamp.org</a></p>
+    </div>
+  </body>
 </html>
