@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Timestamp Microservice</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>📅 Timestamp Microservice</h1>
+    <p>This API returns Unix and UTC time for a given date string or Unix timestamp.</p>
+
+    <h2>📌 Examples:</h2>
+    <ul>
+      <li><code>/api/2015-12-25</code></li>
+      <li><code>/api/1451001600000</code></li>
+      <li><code>/api/</code> (returns current time)</li>
+      <li><code>/api/invalid-date</code> (invalid date response)</li>
+    </ul>
+
+    <h2>Enter a Date or Timestamp:</h2>
+    <input type="text" id="date-input" placeholder="Enter a date or timestamp" />
+    <button id="submit-btn">Submit</button>
+
+    <div id="output">
+      <p><strong>Unix Timestamp:</strong> <span id="unix"></span></p>
+      <p><strong>UTC Time:</strong> <span id="utc"></span></p>
+    </div>
+
+    <footer>
+      <p>🚀 Created for <a href="https://www.freecodecamp.org/" target="_blank">freeCodeCamp</a></p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
